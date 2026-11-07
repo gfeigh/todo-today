@@ -1,0 +1,218 @@
+.plan-panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(16px, 3vw, 24px);
+}
+
+.plan-panel__heading {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.plan-panel__lead {
+  color: var(--muted);
+  max-width: 62ch;
+}
+.plan-panel__lead strong {
+  color: var(--orange-strong);
+}
+
+/* Draft (before planning) */
+.draft {
+  display: grid;
+  gap: 18px;
+}
+.draft__intro {
+  display: grid;
+  gap: 6px;
+}
+
+.draft__stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+}
+.draft__stats div {
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+}
+.draft__stats dt {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.draft__stats dd {
+  margin: 2px 0 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--purple);
+}
+
+.draft__samples {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+.draft__sample-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 1px 6px;
+  border-radius: 6px;
+  border: 1.5px dashed var(--purple);
+  color: var(--purple);
+}
+
+/* Checklist (after planning) */
+.checklist {
+  display: grid;
+  gap: 12px;
+}
+.checklist__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.checklist__count {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.checklist__bar {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+.checklist__bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--purple), var(--orange));
+  transition: width 0.3s ease;
+}
+
+.checklist__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+}
+
+.checklist__item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 4px;
+  border-top: 1px solid var(--line);
+}
+.checklist__item:first-child {
+  border-top: 0;
+}
+
+.checklist__box {
+  appearance: none;
+  margin: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  border: 2px solid var(--purple);
+  background: var(--surface);
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+.checklist__box::after {
+  content: '';
+  width: 12px;
+  height: 7px;
+  border-left: 3px solid var(--on-orange);
+  border-bottom: 3px solid var(--on-orange);
+  transform: rotate(-45deg) translate(1px, -1px) scale(0);
+  transition: transform 0.15s ease;
+}
+.checklist__box:checked {
+  background: var(--orange);
+  border-color: var(--orange);
+}
+.checklist__box:checked::after {
+  transform: rotate(-45deg) translate(1px, -1px) scale(1);
+}
+
+.checklist__label {
+  display: grid;
+  min-width: 0;
+  cursor: pointer;
+}
+.checklist__name {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.checklist__time {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.checklist__item--done .checklist__name {
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-color: var(--orange);
+  text-decoration-thickness: 2px;
+}
+.checklist__item--now {
+  background: var(--orange-soft);
+  border-radius: var(--radius-sm);
+  padding-inline: 10px;
+}
+
+.pill {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.pill--now {
+  background: var(--orange);
+  color: var(--on-orange);
+}
+.pill--later {
+  background: var(--purple-soft);
+  color: var(--purple);
+}
+.pill--late {
+  background: transparent;
+  color: var(--danger);
+  border: 1.5px solid currentColor;
+}
+.pill--done {
+  background: var(--surface-2);
+  color: var(--muted);
+}
+
+@media (max-width: 520px) {
+  .draft {
+    gap: 14px;
+  }
+  .draft__stats {
+    gap: 6px;
+  }
+  .draft__stats div {
+    padding: 8px 10px;
+  }
+  .draft__stats dt {
+    font-size: 0.62rem;
+  }
+  .draft__stats dd {
+    font-size: 0.95rem;
+  }
+}

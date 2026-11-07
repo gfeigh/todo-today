@@ -1,0 +1,56 @@
+.task-input {
+  display: grid;
+  gap: 8px;
+}
+
+.task-input__row {
+  display: flex;
+  gap: 10px;
+}
+
+.task-input__field {
+  flex: 1;
+  min-width: 0;
+  height: 56px;
+  padding: 0 18px;
+  border-radius: var(--radius);
+  border: 2px solid var(--line-strong);
+  background: var(--surface);
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.task-input__field::placeholder {
+  color: var(--muted);
+}
+.task-input__field:focus {
+  outline: none;
+  border-color: var(--purple);
+  box-shadow: 0 0 0 4px var(--purple-soft);
+}
+
+.task-input__add {
+  height: 56px;
+  padding: 0 22px;
+  border-radius: var(--radius);
+  font-size: 1rem;
+}
+
+.task-input__hint {
+  font-size: 0.875rem;
+  color: var(--muted);
+  padding-left: 4px;
+}
+.task-input__hint strong {
+  color: var(--purple);
+}
+.task-input__hint--error {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+@media (max-width: 420px) {
+  .task-input__add {
+    padding: 0 16px;
+  }
+}
