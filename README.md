@@ -52,6 +52,7 @@ todo-today/
     │   ├── schedule.js            Overlap checks, finding free slots, drag rules
     │   ├── time.js                Minutes-since-midnight helpers and formatting
     │   ├── storage.js             Save/load to localStorage
+    │   ├── calendar.js            .ics export with a reminder per task
     │   └── chime.js               The start-of-task sound
     │
     └── styles/
@@ -73,4 +74,10 @@ the scheduling math in `utils/schedule.js` simple.
   an `https://` site or `localhost`. They fire while the app is open in a tab, even in
   the background. Alerts with the app fully closed would need a push server
   (Web Push), which this app doesn't include.
+- **Calendar reminders:** after planning, **Add to Calendar with reminders** (or the
+  calendar icon on a single task) exports an `.ics` file with an alarm at each task's
+  start. On iPhone/iPad, Safari shows an *Add to Calendar* sheet, and iOS Calendar
+  then reminds you even when the app is closed. A web app can't write to the
+  calendar directly, so if you move a task later, add it again. Same task, same ID,
+  so the calendar should update the event rather than add a second one.
 - Data is saved in the browser (`localStorage`) and is per device.

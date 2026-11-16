@@ -70,6 +70,39 @@
 }
 
 /* Checklist (after planning) */
+.checklist__calendar-all {
+  justify-self: start;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1.5px solid var(--purple);
+  background: var(--purple-soft);
+  color: var(--purple);
+  cursor: pointer;
+}
+.checklist__calendar-all:hover {
+  background: var(--purple);
+  color: var(--surface);
+}
+.checklist__calendar {
+  display: grid;
+  place-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+.checklist__calendar:hover {
+  background: var(--purple-soft);
+  color: var(--purple);
+}
+
 .checklist {
   display: grid;
   gap: 12px;
@@ -108,7 +141,7 @@
 
 .checklist__item {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
   align-items: center;
   gap: 14px;
   padding: 12px 4px;
@@ -200,6 +233,9 @@
 }
 
 @media (max-width: 520px) {
+  .checklist__item {
+    gap: 8px;
+  }
   .draft {
     gap: 14px;
   }

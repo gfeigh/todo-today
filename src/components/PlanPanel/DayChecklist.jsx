@@ -1,3 +1,4 @@
+import { addToCalendar } from '../../utils/calendar.js';
 import { sortByStart } from '../../utils/schedule.js';
 import { formatDuration, formatRange, minutesNow } from '../../utils/time.js';
 
@@ -22,6 +23,15 @@ export default function DayChecklist({ tasks, now, onToggleDone }) {
           <span className="mono">{doneCount}</span> of <span className="mono">{tasks.length}</span> done
         </p>
       </div>
+      {tasks.some((t) => !t.done) && (
+        <button
+          type="button"
+          className="checklist__calendar-all"
+          onClick={() => addToCalendar(ordered.filter((t) => !t.done))}
+        >
+          Add to Calendar with reminders
+        </button>
+      )}
       <div
         className="checklist__bar"
         role="progressbar"
@@ -56,6 +66,18 @@ export default function DayChecklist({ tasks, now, onToggleDone }) {
                   </span>
                 </label>
                 <span className={`pill pill--${status.tone}`}>{status.label}</span>
+                <button
+                  type="button"
+                  className="checklist__calendar"
+                  onClick={() => addToCalendar([task], 'todo-today-task.ics')}
+                  aria-label={`Add ${task.name} to Calendar with a reminder`}
+                  title="Add to Calendar with a reminder"
+                >
+                  <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                    <rect x="3.5" y="5" width="17" height="15.5" rx="3" fill="none" stroke="currentColor" strokeWidth="2" />
+                    <path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+                </button>
               </li>
             );
           })}
