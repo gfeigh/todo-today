@@ -44,14 +44,14 @@ export default function DraftSummary({ tasks, now, onClearSamples }) {
         </div>
       </dl>
 
-      {hasSamples && (
+      {/* {hasSamples && (
         <p className="draft__samples">
           The blocks marked <span className="draft__sample-tag">Sample</span> are there so you can try dragging.{' '}
           <button type="button" className="btn btn--link" onClick={onClearSamples}>
             Clear samples
           </button>
         </p>
-      )}
+      )} */}
     </div>
   );
 }

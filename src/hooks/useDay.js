@@ -7,10 +7,11 @@ import { findOpenSlot } from '../utils/schedule.js';
 import { loadDay, saveDay } from '../utils/storage.js';
 import { DEFAULT_DURATION, minutesNow, msUntilMidnight, nextHalfHour, todayKey } from '../utils/time.js';
 
+/*Add to first day if use in unclear*/
 const SAMPLE_TASKS = [
-  { name: 'Reply to the email I keep avoiding', duration: 60 },
-  { name: 'Laundry, start to finish', duration: 45 },
-  { name: 'Read 20 pages', duration: 30 },
+  // { name: 'Reply to the email I keep avoiding', duration: 60 },
+  // { name: 'Laundry, start to finish', duration: 45 },
+  // { name: 'Read 20 pages', duration: 30 },
 ];
 
 const newId = () => `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`;
@@ -19,22 +20,16 @@ function freshDay() {
   return { date: todayKey(), tasks: [], planned: false, notified: {}, isFirstVisit: false };
 }
 
-/** First visit only: drop a few sample tasks on the timeline to show how it works. */
-function dayWithSamples() {
+
+function firstDay() {
   const day = { ...freshDay(), isFirstVisit: true };
   let cursor = nextHalfHour(minutesNow());
-  for (const sample of SAMPLE_TASKS) {
-    const slot = findOpenSlot(day.tasks, cursor, sample.duration);
-    if (!slot) break;
-    day.tasks.push({ id: newId(), name: sample.name, ...slot, done: false, sample: true });
-    cursor = slot.start + slot.duration + 30;
-  }
   return day;
 }
 
 function initialDay() {
   const saved = loadDay();
-  if (!saved) return dayWithSamples();
+  if (!saved) return firstDay();
   if (saved.date !== todayKey()) return freshDay();
   return { ...saved, isFirstVisit: false };
 }
